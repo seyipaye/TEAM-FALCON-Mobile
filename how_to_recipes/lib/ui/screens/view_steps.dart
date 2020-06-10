@@ -1,112 +1,141 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:how_to_recipes/ui/screens/widget/round_rectangular_button.dart';
+
+import '../ui_helper.dart';
 
 class ViewSteps extends StatelessWidget {
+  String title = 'Jollof rice and Chicken';
+  String description =
+      'Jollof rice and chicken is a lorem ipsum dolor sit amet asipscing elit';
+  final steps = <String>['Stepper'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          children: <Widget>[
-            Image.asset('assets/rice_img.jpg',
-            alignment: Alignment.topCenter,),
-            SizedBox(height: 30.0),
-              Container(
-                margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                  child: Card(
+      body: Material(
+        color: Constants.lightBG,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              expandedHeight: 240.0,
+              elevation: 1,
+              floating: true,
+              pinned: true,
+              centerTitle: false,
+              automaticallyImplyLeading: true,
+              flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: false,
+                  title: Text(title,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      )),
+                  background: Image.asset(
+                    'assets/images/sample_recipe.png',
+                    fit: BoxFit.cover,
+                    color: Colors.black.withOpacity(0.5),
+                    colorBlendMode: BlendMode.srcOver,
+                  )),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.more_vert),
+                  iconSize: 32.0,
+                  color: Colors.white,
+                  onPressed: () {},
+                )
+              ],
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate((_, index) {
+                if (index == 0) {
+                  return _getHeader();
+                } else {
+                  if (index >= steps.length) {
+                    steps.addAll(generateSteps());
+                  }
+                  // Spaces we're intentionally left
+                  return _buildRow('  $index    ' + steps[index]);
+                }
+              }),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  generateSteps() {
+    return <String>[
+      'Boil water',
+      'Add rice',
+    ];
+  }
+
+  _buildRow(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+      child: RoundRectangularButton(
+        20.0,
+        color: Constants.kDarkOrange,
+        text: text,
+        constraints: BoxConstraints.expand(
+          height: 50.0,
+        ),
+      ),
+    );
+  }
+
+  Widget _getHeader() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            margin: EdgeInsets.symmetric(vertical: 24.0),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
+                  Text(
                     "Description",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25.0,
+                      fontSize: 14.0,
+                      fontFamily: Constants.kfont,
+                      fontWeight: FontWeight.w500,
                       letterSpacing: 1,
                     ),
                   ),
-                  ),
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Steps on how i cooked my jollof rice. blah blah Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 15.0,
-                        ),
-                      )
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontFamily: Constants.kfont,
+                        fontStyle: FontStyle.normal,
+                      ),
+                    ),
                   )
                 ],
               ),
-            )),
-            Column(
-              children: <Widget>[
-                Container( 
-                    margin: EdgeInsets.fromLTRB(10, 20, 10, 5),
-                    child: Align(
-                  alignment: Alignment.topLeft,
-                child: Text(
-                  "Steps",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-                )),
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      height: 50.0,
-                      width: 500.0,
-                      decoration: BoxDecoration(
-                        color: Colors.deepOrange,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(22.0),
-                              topLeft: Radius.circular(22.0),
-                              topRight: Radius.circular(22.0))),
-                        child: Text(
-                      "1 Boil Water",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                    ),
-                ),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    height: 50.0,
-                    width: 500.0,
-                    decoration: BoxDecoration(
-                      color: Colors.deepOrange,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(22.0),
-                            topLeft: Radius.circular(22.0),
-                            topRight: Radius.circular(22.0))),
-                    child: Text(
-                      "2 Add Rice",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-
-    ),
+            ),
+          ),
+          Text(
+            "Steps",
+            style: TextStyle(
+              fontSize: 18.0,
+              fontFamily: Constants.kfont,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1,
+            ),
+          ),
+        ],
+      ),
     );
-}
-
-
+  }
 }

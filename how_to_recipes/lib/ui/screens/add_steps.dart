@@ -41,7 +41,7 @@ class _State extends State<AddSteps> {
                       child: DottedBorder(
                         borderType: BorderType.RRect,
                         radius: Radius.circular(22.0),
-                        color: Constants.lightOrange,
+                        color: Constants.kLightOrange,
                         strokeWidth: 2.0,
                         dashPattern: [10, 10],
                         child: Column(
@@ -97,7 +97,7 @@ class _State extends State<AddSteps> {
                 ),
                 RoundRectangularButton(
                   20.0,
-                  color: Color(0xFFFC7A1E),
+                  color: Constants.kLightOrange,
                   text: 'Add new step',
                   icon: Icons.add,
                   constraints: BoxConstraints.expand(

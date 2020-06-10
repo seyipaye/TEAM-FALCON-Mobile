@@ -12,6 +12,10 @@ import 'package:how_to_recipes/ui/ui_helper.dart';
 import 'package:provider/provider.dart';
 
 import 'ui/screens/add_steps.dart';
+import 'ui/screens/onboarding.dart';
+import 'ui/screens/saved_recipes_screen.dart';
+import 'ui/screens/splash_screen.dart';
+import 'ui/screens/view_steps.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.light(),
-      home: AddSteps(),
+      home: ViewSteps(),
       //home: SavedRecipesScreen(),
     );
 

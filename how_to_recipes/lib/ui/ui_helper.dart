@@ -14,7 +14,8 @@ class Constants {
   static Color darkBG = Colors.black;
   static Color badgeColor = Colors.red;
   static Color weirdBlue = Color(0xff1D1754);
-  static Color lightOrange = Color(0xFFFFAC50);
+  static Color kLightOrange = Color(0xFFFFAC50);
+  static Color kDarkOrange = Color(0xFFFC7A1E);
 
   static const kfont = 'DMSans';
 
